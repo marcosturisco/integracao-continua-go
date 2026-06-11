@@ -27,7 +27,45 @@ Ao longo deste projeto, os seguintes conceitos foram aplicados na prática:
 
 ---
 
+## 💻 Guia Rápido de Comandos Utilizados
+
+### Controle de Versão (Git)
+| Comando | Descrição Prática |
+| :--- | :--- |
+| `ssh-keygen -t ed25519 -C "email"` | Gera chaves criptográficas para autenticar a máquina com o GitHub. |
+| `git init` | Transforma a pasta local em um repositório Git, criando a pasta `.git`. |
+| `git remote add origin` | Conecta o projeto local ao repositório remoto no GitHub. |
+| `git commit --amend` | Modifica ou adiciona arquivos no último commit sem sujar o histórico. |
+| `git revert` | Desfaz as alterações de um commit passado criando um novo commit seguro. |
+| `git reset --hard` | Apaga o histórico e retorna o projeto exatamente ao estado do *hash* informado. |
+| `git add .` | Adiciona todos os arquivos modificados na pasta atual para a área de preparação (staging) do próximo commit. |
+| `git commit -m "mensagem"` | Salva as alterações preparadas no histórico local com uma mensagem descritiva. |
+| `git push -u origin main` | Envia os commits locais para a branch principal do repositório remoto pela primeira vez. |
+
+### Conteinerização (Docker)
+| Comando | Descrição Prática |
+| :--- | :--- |
+| `docker run -d -p 8080:80` | Baixa a imagem, executa o container no fundo (`-d`) e mapeia as portas (`-p`). |
+| `docker build -t dockermactur/app .` | Constrói a imagem localmente lendo o Dockerfile da pasta atual (`.`) e aplica sua tag. |
+| `docker volume create` | Cria um volume persistente para banco de dados no host gerenciado pelo Docker. |
+| `docker network create --driver bridge` | Cria rede isolada para containers conversarem. |
+| `docker compose up --build -d` | Lê o `docker-compose.yml`, constrói as imagens do zero e sobe a infraestrutura. |
+| `docker push dockermactur/app` | Envia sua imagem final pronta para o seu repositório no Docker Hub. |
+| `docker run -d -p 8080:80 dockersamples/static-site` | Baixa e executa o container de exemplo em segundo plano, mapeando a porta 80 do container para a 8080 do host. |
+| `docker ps` | Lista todos os containers que estão em execução no momento. |
+| `docker rm -f <id_ou_nome>` | Força a parada e remove um container específico do seu computador. |
+| `docker build -t dockermactur/nome-da-app .` | Constrói a imagem local baseada no `Dockerfile` e já aplica a tag com o nome do seu usuário. |
+
+---
+
 ## 🗺️ Roteiro Prático (Backlog)
 Para dominar os conceitos, o projeto foi estruturado nos seguintes épicos:
 
-* **Fundamentos Iniciais:** Geração de chave SSH no GitHub (`marcosturisco`), criação do repositório (`git init`) e execução do primeiro container
+### Fase 1: Primeiro Commit de Atividades (Concluído ✅)
+* **Épico 1 - Fundamentos e Configuração Inicial (Básico):** Configuração de autenticação segura gerando uma chave SSH e adicionando-a na conta GitHub (`marcosturisco`), criação e inicialização do repositório local (`git init`) com vínculo ao repositório remoto, e execução do primeiro container público (`dockersamples/static-site`) mapeando a porta `8080`, seguido da listagem e exclusão do container.
+* **Épico 2 - Customização e Comunicação (Intermediário):** Escrita do próprio `Dockerfile` (definindo imagem base, diretório de trabalho e comandos de inicialização) e construção da imagem localmente, já nomeando-a com a tag do usuário do Docker Hub (`dockermactur`).
+
+---
+
+**Autor:** Marcos Turisco (@marcosturisco)  
+**Imagens Docker:** `dockermactur`
