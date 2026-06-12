@@ -55,6 +55,8 @@ Ao longo deste projeto, os seguintes conceitos foram aplicados na prática:
 | `docker ps` | Lista todos os containers que estão em execução no momento. |
 | `docker rm -f <id_ou_nome>` | Força a parada e remove um container específico do seu computador. |
 | `docker build -t dockermactur/nome-da-app .` | Constrói a imagem local baseada no `Dockerfile` e já aplica a tag com o nome do seu usuário. |
+| `docker image ls --filter reference='*go_*'` | Lista imagens que contenham o trecho `go_` no nome. |
+| `docker build --target=builder -t go_builder .` | Compila e gera uma imagem com o nome `go_builder`. |
 
 ---
 

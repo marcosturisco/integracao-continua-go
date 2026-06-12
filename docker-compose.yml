@@ -3,15 +3,16 @@ services:
     image: "postgres:18"
     # Configura as variáveis de ambiente para o PostgreSQL que sobrescrevem os valores padrão do Dockerfile
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=root
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
     ports:
       - 5432:5432
     volumes:
-      - ./postgres-data:/var/lib/postgresql# Adiciona a verificação de saúde
+      - ./postgres-data:/var/lib/postgresql
+    # Adiciona a verificação de saúde
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root -d root"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -21,6 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: production
+    image: ci-cd-go:${APP_VERSION:-latest}
     ports:
       - 8080:8080
     depends_on:

@@ -2,17 +2,8 @@ FROM golang:1.22 AS builder
 
 WORKDIR /app
 
-# Copia os arquivos do projeto para o diretório de trabalho no container
-# A ordem de cópia é importante para aproveitar o cache do Docker e evitar a reinstalação de dependências desnecessariamente (Arquivos menos editados por primeiro para aproveitar o cache)
-# Primeiro, copiamos os arquivos de dependências para que o Docker possa cachear a etapa de instalação de dependências
-# Depois, copiamos o restante dos arquivos do projeto (Arquivos mais editados por último para evitar cache desnecessário)
-COPY ./controllers/ /app/controllers/
-COPY ./database/ /app/database/
-COPY ./models/ /app/models/
-COPY ./routes/ /app/routes/
-COPY ./main.go /app/main.go
-COPY ./go.mod /app/go.mod
-COPY ./go.sum /app/go.sum
+# Copia todos os arquivos do projeto para o diretório de trabalho no container, exceto os arquivos listados no .dockerignore
+COPY . /app
 
 RUN go build main.go
 
