@@ -64,6 +64,9 @@ Para dominar os conceitos, o projeto foi estruturado nos seguintes épicos:
 ### Fase 1: Primeiro Commit de Atividades (Concluído ✅)
 * **Épico 1 - Fundamentos e Configuração Inicial (Básico):** Configuração de autenticação segura gerando uma chave SSH e adicionando-a na conta GitHub (`marcosturisco`), criação e inicialização do repositório local (`git init`) com vínculo ao repositório remoto, e execução do primeiro container público (`dockersamples/static-site`) mapeando a porta `8080`, seguido da listagem e exclusão do container.
 * **Épico 2 - Customização e Comunicação (Intermediário):** Escrita do próprio `Dockerfile` (definindo imagem base, diretório de trabalho e comandos de inicialização) e construção da imagem localmente, já nomeando-a com a tag do usuário do Docker Hub (`dockermactur`).
+Criar um volume gerenciado pelo Docker para garantir a persistência de dados (como arquivos ou banco de dados) e testar a criação de arquivos dentro dele.
+* **Épico 3 - Orquestração e Histórico (Avançado):** Abandonar a inicialização manual de múltiplos containers criando um arquivo (`docker-compose.yml`). Configurar os serviços, redes e volumes em um único arquivo e iniciar a aplicação.
+Refatorar o seu (`Dockerfile`) aplicando a técnica de (`Multistage Build`). Criar um estágio para compilação (`build`) e outro apenas com o necessário para execução (`production`), tornando sua imagem mais leve.
 
 ---
 
