@@ -1,4 +1,4 @@
-FROM golang:1.22 AS builder
+FROM golang:1.22-alpine AS builder
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY . /app
 
 RUN go build main.go
 
-FROM golang:1.22 AS production
+FROM alpine:latest AS production
 
 EXPOSE 8080
 
